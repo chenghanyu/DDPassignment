@@ -1,0 +1,65 @@
+---
+title: "Developing Data Products week 2 assignment"
+author: "Cheng-Han Yu"
+date: "June 22, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Assignment Instructions
+
+To complete this assignment, we need
+
+- Create a web page using **R Markdown** that features a map created with **Leaflet**.
+
+- Host your webpage on either [GitHub](https://github.com) Pages, [RPubs](https://rpubs.com/), or [NeoCities](https://neocities.org/).
+
+- Your webpage must contain **the date** which *less than two months before the date that you're grading this assignment*, and it must contain a map created with Leaflet.
+
+
+## A map from Leaflet
+The map in this assignment is showing 10 campuses of University of California using leaflet. I use [mynasadata](https://mynasadata.larc.nasa.gov/latitudelongitude-finder/) to get longitude and latitude of the 10 campuses.
+
+The marker used for locating the campuses is the UC logo. When we click a UC logo marker, the corresponding campus name shows up with a hyperlink directing to the homepage of the campus.
+
+```{r}
+library(leaflet)
+
+UC_Icon <- makeIcon(
+    iconUrl = "http://logonoid.com/images/thumbs/university-of-california-logo.png",
+    iconWidth = 31 * 215 / 230, iconHeight = 31,
+    iconAnchorX = 31 * 215 / 230 / 2, iconAnchorY = 16
+)
+
+UC_LatLong <- data.frame(
+    lat = c(37.871899, 34.068921, 32.880060, 38.538232, 34.413963, 
+            36.991386, 37.763133, 33.973706, 37.364875, 33.640495),
+    lng = c(-122.25854, -118.445181, -117.234014, -121.761712, -119.848947, 
+            -122.060872, -122.457549, -117.328064, -120.4254, -117.844296))
+
+UC_Sites <- c(
+    "<a href='http://www.berkeley.edu/'>UC Berkeley</a>",
+    "<a href='http://www.ucla.edu/'>UC Los Angeles</a>",
+    "<a href='https://ucsd.edu/'>UC San Diego</a>",
+    "<a href='https://www.ucdavis.edu/'>UC Davis</a>",
+    "<a href='http://www.ucsb.edu/'>UC Santa Barbara</a>",
+    "<a href='https://www.ucsc.edu/'>UC Santa CruzC</a>",
+    "<a href='https://www.ucsf.edu'>UC San Francisco</a>",
+    "<a href='http://www.ucr.edu/'>UC Riverside</a>",
+    "<a href='http://www.ucmerced.edu/'>UC Merced</a>",
+    "<a href='https://uci.edu/'>UC Irvine</a>"
+)
+
+UC_LatLong %>% 
+    leaflet() %>%
+    addTiles() %>%
+    addMarkers(icon = UC_Icon, popup = UC_Sites)
+
+```
+
+## Conclusion
+For more details about the leaflet package for R 
+visit http://rstudio.github.io/leaflet/.
