@@ -1,0 +1,44 @@
+---
+title: "Developing Data Products"
+subtitle:  "week 3 assignment"
+author: |
+    | Cheng-Han Yu, Applied Math and Statistics, UC Santa Cruz
+date: "`r Sys.Date()`"
+output: 
+  ioslides_presentation:
+    incremental: yes
+    logo: soelogo.jpg
+    footer: no
+    widescreen: yes
+    transition: default
+    css: ioslides_style.css
+    fig_width: 5
+    fig_height: 3
+    fig_caption: true
+    mathjax: "default"
+    keep_md: no
+---
+
+## Assignment instructions
+
+- Create a **web page presentation** using R Markdown that features a plot created with **Plotly**.
+- Host your webpage on either [GitHub](https://github.com) Pages, [RPubs](https://rpubs.com/), or [NeoCities](https://neocities.org/).
+- Your webpage must contain the date that you created the document, and it must contain a plot created with Plotly.
+
+## Scatter plot Shots v.s. Time for each Position of worldcup dataset
+```{r wroldcup, echo = TRUE, eval=TRUE, include=TRUE,message=FALSE, warning=FALSE}
+library(faraway) 
+library(plotly)
+data(worldcup)
+worldcup_scatter <- worldcup %>%
+  ggplot(aes(x = Time, y = Shots, color = Position)) +
+  geom_point()
+```
+
+
+## Slide with Plot
+
+```{r plotly, echo=TRUE, message=FALSE, warning=FALSE, fig.height=5,fig.align='center', fig.width=10}
+ggplotly(worldcup_scatter)
+```
+
