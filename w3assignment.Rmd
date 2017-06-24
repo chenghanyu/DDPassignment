@@ -35,6 +35,16 @@ worldcup_scatter <- worldcup %>%
   geom_point()
 ```
 
+<!-- ```r -->
+<!-- library(faraway) -->
+<!-- library(plotly) -->
+<!-- data(worldcup) -->
+<!-- worldcup_scatter <- worldcup %>% -->
+<!--   ggplot(aes(x = Time, y = Shots, color = Position)) + -->
+<!--   geom_point() -->
+<!-- ``` -->
+
+
 
 ## Slide with Plot
 
